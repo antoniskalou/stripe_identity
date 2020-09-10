@@ -3,25 +3,24 @@ defmodule StripeIdentity do
   Stripe Identity API support for Elixir.
   """
 
-  @default_stripe_api_url "https://api.stripe.com/v3/suckmybatteries"
+  @default_stripe_files_url "https://files.stripe.com/v1/files"
 
-  @doc "Return the URL for the document capture UI page."
-  def document_capture_url(%{api_key: api_key} = options) do
-    %{
-      return_url: return_url,
-      cancel_url: cancel_url,
-      requested_verifications: verifications,
-      person_data: person_data,
-    } = options
+  @doc "Submit a document to the document capture API."
+  def submit_document_verification(owned_by, file) do
+    data = %{
+      file: file,
+      purpose: "identity_document_downloadable",
+      owned_by: owned_by,
+    }
 
     headers = %{
       "Authorization" => "Bearer #{api_key}",
-      "Content-Type" => "application/json",
+      "Content-Type" => "multipart/form-data",
     }
 
-    :hackney.post("stripe.com/api", headers, options)
+    :hackney.post(stripe_files_url(), headers, data)
   end
 
-  def stripe_api_url(),
-    do: Application.get_env(StripeIdentity, :stripe_api_url, @default_stripe_api_url)
+  def stripe_files_url(),
+    do: Application.get_env(StripeIdentity, :stripe_files_url, @default_stripe_files_url)
 end
