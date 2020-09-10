@@ -1,21 +1,20 @@
-# StripeIdentity
+# stripe_identity.ex
 
-**TODO: Add description**
+Stripe identity (beta) support for elixir, providing webhook and file submission.
 
 ## Installation
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `stripe_identity` to your list of dependencies in `mix.exs`:
+This package is only available as a direct git depdency at the moment,
+use it by adding `stripe_identity` to your list of dependencies in `mix.exs`:
 
 ```elixir
 def deps do
   [
-    {:stripe_identity, "~> 0.1.0"}
+    {:stripe_identity, git: "https://github.com/antoniskalou/stripe_identity"}
   ]
 end
 ```
 
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at [https://hexdocs.pm/stripe_identity](https://hexdocs.pm/stripe_identity).
+## License
 
+Check the [LICENSE](LICENSE) file.
